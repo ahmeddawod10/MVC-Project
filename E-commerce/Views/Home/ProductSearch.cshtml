@@ -1,0 +1,119 @@
+﻿@* @using E_commerce.Models; *@
+@model List<E_commerce.Models.Product>
+
+<!--
+<div class="container  mb-5" style="margin-top:125px;">
+<form asp-action="ProductSearch" asp-controller="Home" method="get">
+<div class="row">
+<div class="col-sm-10">
+<input type="text" name="xname" id="xname" class="form-control" placeholder="search" />
+</div>
+<input type="submit" class="col-sm-2 btn btn-primary" value="search" />
+</div>
+</form>
+</div>
+
+
+<section id="services" class="services section">
+
+<div class="container section-title" data-aos="fade-up">
+<h2>The Products</h2>
+<p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+</div>
+
+<div class="container">
+
+<div class="row gy-4">
+
+@*  @foreach (var item in Model)
+            {
+
+                <div class="col-xl-4 col-lg-6 product-card category" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-item d-flex">
+                        <div class="product-image">
+                            <img src="@item.photo" class="img-fluid" alt="@item.name" />
+                        </div>
+                        <div class="product-details">
+                            <div class="product-name">@item.name</div>
+                            <div class="product-description">@item.description</div>
+                            <div class="product-price">Rp @item.price.ToString("N0")</div>
+                        </div>
+                    </div>
+                </div>
+            }*@
+
+
+
+</div>
+
+</div>
+
+</section>-->
+<section class="page-header " style="    background-image: url('~/assets/img/home.jpg'); ">
+    <div class="page-header-content">
+        <div class="header-logo">
+            <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 0L27.4 24H0.6L14 0Z" fill="#B88E2F" />
+            </svg>
+        </div>
+        <h1>Products</h1>
+        <div class="breadcrumb">
+            <a href="/" class="breadcrumb-item">Home</a>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item active">Products</span>
+        </div>
+    </div>
+</section>
+
+
+<div class="container  mb-5" style="margin-top:125px;">
+    <form asp-action="ProductSearch" asp-controller="Home" method="get">
+        <div class="row">
+            <div class="col-sm-10">
+                <input type="text" name="xname" id="xname" class="form-control" placeholder="search" />
+            </div>
+            <input type="submit" class="col-sm-2 btn btn-primary" value="search" />
+        </div>
+    </form>
+</div>
+
+
+<section class="products-section">
+    <div class="container">
+        <div class="products-grid">
+            <!-- Product Card -->
+            @foreach (var item in Model)
+            {
+                <div class="product-card">
+                    <div class="product-image">
+                        @* <span class="product-tag">New</span> *@
+                        @* <img src="~/images/@item.photo" alt="Sytherine"> *@
+                        <img src="~/assets/img/@item.photo" alt="Asgaard sofa view 1">
+                        <div class="product-overlay">
+                            <button class="add-to-cart">Add to cart</button>
+                            <div class="pagination-action">
+                                <button class="action-btn"><i class="bi bi-share"></i></button>
+                                <button class="action-btn"><i class="bi bi-heart"></i></button>
+                                <button class="action-btn"><i class="bi bi-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">@item.name</h3>
+                        <p class="product-description">@item.description</p>
+                        <div class="product-price">@item.price.ToString()</div>
+                    </div>
+                </div>
+            }
+            <!-- Repeat product cards as needed -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="page-item active">1</button>
+            <button class="page-item">2</button>
+            <button class="page-item">3</button>
+            <button class="page-item next">Next</button>
+        </div>
+    </div>
+</section>

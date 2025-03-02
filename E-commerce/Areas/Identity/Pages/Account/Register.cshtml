@@ -1,0 +1,88 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; background-color: #FAF3EA;">
+    <div style="width: 100%; max-width: 460px; background: #FFFFFF; border-radius: 20px; padding: 40px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);">
+        <!-- Logo and Title -->
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px;">
+                <svg width="32" height="28" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 0L27.4 24H0.6L14 0Z" fill="#B88E2F" />
+                </svg>
+            </div>
+            <h1 style="font-size: 36px; font-weight: 600; color: #333333; margin: 0 0 8px 0;">Create Account</h1>
+            <p style="color: #666666; margin: 0; font-size: 16px;">Please fill in the information below</p>
+        </div>
+
+        <!-- Registration Form -->
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"
+                 style="padding: 12px; background: #FFF5F5; border-radius: 8px; margin-bottom: 20px; color: #DC3545;"></div>
+
+            <!-- Email Input -->
+            <div style="margin-bottom: 24px;">
+                <label asp-for="Input.Email" style="display: block; font-size: 16px; color: #333333; margin-bottom: 8px;">
+                    Email
+                </label>
+                <input asp-for="Input.Email"
+                       style="width: 100%; padding: 14px; font-size: 15px; color: #333333; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 8px; transition: all 0.3s ease;"
+                       onFocus="this.style.borderColor='#B88E2F'; this.style.boxShadow='0 0 0 3px rgba(184, 142, 47, 0.1)';"
+                       onBlur="this.style.borderColor='#E0E0E0'; this.style.boxShadow='none';"
+                       placeholder="name@example.com" />
+                <span asp-validation-for="Input.Email" style="color: #DC3545; font-size: 13px; display: block; margin-top: 5px;"></span>
+            </div>
+
+            <!-- Password Input -->
+            <div style="margin-bottom: 24px;">
+                <label asp-for="Input.Password" style="display: block; font-size: 16px; color: #333333; margin-bottom: 8px;">
+                    Password
+                </label>
+                <input asp-for="Input.Password"
+                       style="width: 100%; padding: 14px; font-size: 15px; color: #333333; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 8px; transition: all 0.3s ease;"
+                       onFocus="this.style.borderColor='#B88E2F'; this.style.boxShadow='0 0 0 3px rgba(184, 142, 47, 0.1)';"
+                       onBlur="this.style.borderColor='#E0E0E0'; this.style.boxShadow='none';"
+                       placeholder="Enter your password" />
+                <span asp-validation-for="Input.Password" style="color: #DC3545; font-size: 13px; display: block; margin-top: 5px;"></span>
+            </div>
+
+            <!-- Confirm Password Input -->
+            <div style="margin-bottom: 30px;">
+                <label asp-for="Input.ConfirmPassword" style="display: block; font-size: 16px; color: #333333; margin-bottom: 8px;">
+                    Confirm Password
+                </label>
+                <input asp-for="Input.ConfirmPassword"
+                       style="width: 100%; padding: 14px; font-size: 15px; color: #333333; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 8px; transition: all 0.3s ease;"
+                       onFocus="this.style.borderColor='#B88E2F'; this.style.boxShadow='0 0 0 3px rgba(184, 142, 47, 0.1)';"
+                       onBlur="this.style.borderColor='#E0E0E0'; this.style.boxShadow='none';"
+                       placeholder="Confirm your password" />
+                <span asp-validation-for="Input.ConfirmPassword" style="color: #DC3545; font-size: 13px; display: block; margin-top: 5px;"></span>
+            </div>
+
+            <!-- Register Button -->
+            <button id="registerSubmit" type="submit"
+                    style="width: 100%; padding: 16px; font-size: 16px; font-weight: 500; color: #FFFFFF; background-color: #B88E2F; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease; margin-bottom: 24px;"
+                    onMouseOver="this.style.backgroundColor='#9a7526';"
+                    onMouseOut="this.style.backgroundColor='#B88E2F';">
+                Create Account
+            </button>
+
+            <!-- Login Link -->
+            <p style="text-align: center; margin: 0; font-size: 14px; color: #333333;">
+                Already have an account?
+                <a href="/Identity/Account/Login"
+                   style="color: #B88E2F; text-decoration: none; font-weight: 500;"
+                   onMouseOver="this.style.color='#9a7526';"
+                   onMouseOut="this.style.color='#B88E2F';">
+                    Login here
+                </a>
+            </p>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

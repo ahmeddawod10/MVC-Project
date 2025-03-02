@@ -1,0 +1,135 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; background-color: #FAF3EA;">
+    <div style="width: 100%; max-width: 1000px; background: #FFFFFF; border-radius: 20px; padding: 40px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);">
+        <!-- Logo and Title -->
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 20px;">
+                <svg width="32" height="28" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 0L27.4 24H0.6L14 0Z" fill="#B88E2F" />
+                </svg>
+                <h1 style="font-size: 28px; font-weight: 600; color: #333333; margin: 0;">Welcome Back</h1>
+            </div>
+            <p style="color: #666666; margin: 0;">Please login to your account</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr  ; gap: 40px;">
+            <!-- Left Side - Local Login -->
+            <div>
+                <form id="account" method="post" style="max-width: 400px; margin: 0 auto;">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                    <!-- Email Input -->
+                    <div style="margin-bottom: 24px;">
+                        <label asp-for="Input.Email" style="display: block; font-size: 14px; font-weight: 500; color: #333333; margin-bottom: 8px;">
+                            Email
+                        </label>
+                        <div style="position: relative;">
+                            <input asp-for="Input.Email"
+                                   style="width: 100%; padding: 12px 16px; font-size: 15px; color: #333333; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 8px; transition: all 0.3s ease;"
+                                   onFocus="this.style.borderColor='#B88E2F'; this.style.boxShadow='0 0 0 3px rgba(184, 142, 47, 0.1)';"
+                                   onBlur="this.style.borderColor='#E0E0E0'; this.style.boxShadow='none';"
+                                   autocomplete="username"
+                                   aria-required="true"
+                                   placeholder="name@example.com" />
+                        </div>
+                        <span asp-validation-for="Input.Email" style="font-size: 12px; color: #dc3545; display: block; margin-top: 5px;"></span>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div style="margin-bottom: 24px;">
+                        <label asp-for="Input.Password" style="display: block; font-size: 14px; font-weight: 500; color: #333333; margin-bottom: 8px;">
+                            Password
+                        </label>
+                        <div style="position: relative;">
+                            <input asp-for="Input.Password"
+                                   style="width: 100%; padding: 12px 16px; font-size: 15px; color: #333333; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 8px; transition: all 0.3s ease;"
+                                   onFocus="this.style.borderColor='#B88E2F'; this.style.boxShadow='0 0 0 3px rgba(184, 142, 47, 0.1)';"
+                                   onBlur="this.style.borderColor='#E0E0E0'; this.style.boxShadow='none';"
+                                   autocomplete="current-password"
+                                   aria-required="true"
+                                   placeholder="Enter your password" />
+                        </div>
+                        <span asp-validation-for="Input.Password" style="font-size: 12px; color: #dc3545; display: block; margin-top: 5px;"></span>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input asp-for="Input.RememberMe"
+                                   style="width: 18px; height: 18px; border: 2px solid #E0E0E0; border-radius: 4px; cursor: pointer;" />
+                            <span style="font-size: 14px; color: #666666;">Remember me</span>
+                        </label>
+                        <a id="forgot-password" asp-page="./ForgotPassword"
+                           style="font-size: 14px; color: #B88E2F; text-decoration: none; transition: color 0.3s ease;"
+                           onMouseOver="this.style.color='#9a7526';"
+                           onMouseOut="this.style.color='#B88E2F';">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button id="login-submit" type="submit"
+                            style="width: 100%; padding: 14px; font-size: 16px; font-weight: 500; color: #FFFFFF; background-color: #B88E2F; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease; margin-bottom: 24px;"
+                            onMouseOver="this.style.backgroundColor='#9a7526';"
+                            onMouseOut="this.style.backgroundColor='#B88E2F';">
+                        Log in
+                    </button>
+
+                    <!-- Register Link -->
+                    <p style="text-align: center; margin: 0;">
+                        Don't have an account?
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"
+                           style="color: #B88E2F; text-decoration: none; transition: color 0.3s ease;"
+                           onMouseOver="this.style.color='#9a7526';"
+                           onMouseOut="this.style.color='#B88E2F';">
+                            Register here
+                        </a>
+                    </p>
+                </form>
+            </div>
+
+            <!-- Divider -->
+            <div style="background-color: #E0E0E0;"></div>
+
+            <!-- Right Side - External Login -->
+            @* <div style="display: flex; flex-direction: column; justify-content: center;"> *@
+            @*     <h3 style="font-size: 20px; color: #333333; margin-bottom: 24px; text-align: center;">Or continue with</h3> *@
+
+            @*     @if ((Model.ExternalLogins?.Count ?? 0) == 0) *@
+            @*     { *@
+            @*         <div style="text-align: center; color: #666666;"> *@
+            @*             <p>No external authentication services configured.</p> *@
+            @*         </div> *@
+            @*     } *@
+            @*     else *@
+            @*     { *@
+            @*         <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post"> *@
+            @*             <div style="display: flex; flex-direction: column; gap: 16px;"> *@
+            @*                 @foreach (var provider in Model.ExternalLogins!) *@
+            @*                 { *@
+            @*                     <button type="submit" name="provider" value="@provider.Name" *@
+            @*                             style="width: 100%; padding: 12px; font-size: 15px; color: #333333; background-color: #F9F1E7; border: 1px solid #E0E0E0; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 10px;" *@
+            @*                             onMouseOver="this.style.backgroundColor='#f0e4d3';" *@
+            @*                             onMouseOut="this.style.backgroundColor='#F9F1E7';"> *@
+            @*                         <i class="bi bi-@provider.DisplayName.ToLower()"></i> *@
+            @*                         Continue with @provider.DisplayName *@
+            @*                     </button> *@
+            @*                 } *@
+            @*             </div> *@
+            @*         </form> *@
+            @*     } *@
+            @* </div> *@
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+}

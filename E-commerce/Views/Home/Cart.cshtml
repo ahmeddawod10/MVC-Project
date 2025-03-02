@@ -1,0 +1,220 @@
+﻿@model List<E_commerce.Models.Cart>
+
+@* @{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<h2>Shopping Cart</h2>
+
+@if (Model.Count == 0)
+{
+    <p>Your cart is empty.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.product.name</td>
+                    <td>@item.count</td>
+                    <td>@item.product.price.ToString("C")</td>
+                    <td>@(item.count * item.product.price)</td>
+                    <td>
+                        <a asp-action="RemoveFromCart" asp-route-id="@item.id" class="btn btn-danger btn-sm">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Total: @Model.Sum(x => x.count * x.product.price).ToString("C")</h4>
+
+    <a asp-action="Checkout" class="btn btn-success">Proceed to Checkout</a>
+}
+ *@
+ 
+@* <section class="page-header " style="background-image: url('/images/home.jpg'); *@
+@* "> *@
+@*     <div class="page-header-content"> *@
+@*         <div class="header-logo"> *@
+@*             <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg"> *@
+@*                 <path d="M14 0L27.4 24H0.6L14 0Z" fill="#B88E2F" /> *@
+@*             </svg> *@
+@*         </div> *@
+@*         <h1>Cart</h1> *@
+@*         <div class="breadcrumb"> *@
+@*             <a href="/" class="breadcrumb-item">Home</a> *@
+@*             <span class="breadcrumb-separator">></span> *@
+@*             <span class="breadcrumb-item active">Cart</span> *@
+@*         </div> *@
+@*     </div> *@
+@* </section> *@
+@* <section class="cart-section "> *@
+@*     <div class="container"> *@
+@*         <div class="cart-layout"> *@
+@*             <!-- Cart Items Table --> *@
+@*             <div class="cart-items"> *@
+@*                 <div class="cart-header"> *@
+@*                     <div class="header-product">Product</div> *@
+@*                     <div class="header-price">Price</div> *@
+@*                     <div class="header-quantity">Quantity</div> *@
+@*                     <div class="header-subtotal">Subtotal</div> *@
+@*                 </div> *@
+
+@*                 <div class="cart-item"> *@
+@*                     <div class="item-product"> *@
+@*                         <img src="/path-to-image/asgaard-sofa.jpg" alt="Asgaard sofa"> *@
+@*                         <span class="product-name">Asgaard sofa</span> *@
+@*                     </div> *@
+@*                     <div class="item-price">Rs. 250,000.00</div> *@
+@*                     <div class="item-quantity"> *@
+@*                         <input type="number" value="1" min="1" class="quantity-input"> *@
+@*                     </div> *@
+@*                     <div class="item-subtotal">Rs. 250,000.00</div> *@
+@*                     <button class="delete-item"> *@
+@*                         <i class="bi bi-trash"></i> *@
+@*                     </button> *@
+@*                 </div> *@
+@*             </div> *@
+
+@*             <!-- Cart Totals --> *@
+@*             <div class="cart-totals"> *@
+@*                 <h2>Cart Totals</h2> *@
+@*                 <div class="totals-row"> *@
+@*                     <span>Subtotal</span> *@
+@*                     <span class="amount">Rs. 250,000.00</span> *@
+@*                 </div> *@
+@*                 <div class="totals-row"> *@
+@*                     <span>Total</span> *@
+@*                     <span class="amount">Rs. 250,000.00</span> *@
+@*                 </div> *@
+@*                 <button class="checkout-btn">Check Out</button> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </section> *@
+ 
+
+<section class="page-header">
+    <div class="page-header-content">
+        <div class="header-logo">
+            <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 0L27.4 24H0.6L14 0Z" fill="#B88E2F" />
+            </svg>
+        </div>
+        <h1>Cart</h1>
+        <div class="breadcrumb">
+            <a href="/" class="breadcrumb-item">Home</a>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item active">Cart</span>
+        </div>
+    </div>
+</section>
+
+<section class="cart-section">
+    <div class="container">
+        <div class="cart-layout">
+            @if (Model.Count == 0)
+            {
+                <p>Your cart is empty.</p>
+            }
+            else
+            {
+                <div class="cart-items">
+                    <div class="cart-header">
+                        <div class="header-product">Product</div>
+                        <div class="header-price">Price</div>
+                        <div class="header-quantity">Quantity</div>
+                        <div class="header-subtotal">Subtotal</div>
+                    </div>
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="cart-item" data-price="@item.product.price">
+                            <div class="item-product">
+                                <img src="~/assets/img/@item.product.photo" alt="@item.product.name">
+                                <span class="product-name">@item.product.name</span>
+                            </div>
+                            <div class="item-price">Rs. @item.product.price.ToString("N2")</div>
+                            <div class="item-quantity">
+                                <input type="number" value="@item.count" min="1" class="quantity-input">
+                            </div>
+                            <div class="item-subtotal">Rs. @(item.count * item.product.price).ToString("N2")</div>
+                            <a asp-action="RemoveFromCart" asp-route-id="@item.id" class="delete-item">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    }
+
+                   
+                </div>
+
+                <div class="cart-totals">
+                    <h2>Cart Totals</h2>
+                    <div class="totals-row">
+                        <span>Subtotal</span>
+                        <span class="amount subtotal">Rs. @Model.Sum(x => x.count * x.product.price).ToString("N2")</span>
+                    </div>
+                    <div class="totals-row">
+                        <span>Fees 14%</span>
+                        <span class="amount fees">
+                            Rs. @Model.Sum(x => x.count * x.product.price * 0.14m).ToString("N2")
+                        </span>
+                    </div>
+                    <div class="totals-row">
+                        <span>Total</span>
+                        <span class="amount ">
+                            Rs. @Model.Sum(x => x.count * x.product.price * 1.14m).ToString("N2")
+                        </span>
+                    </div>
+                    <a asp-action="Checkout" class="checkout-btn">Check Out</a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const quantityInputs = document.querySelectorAll(".quantity-input");
+
+        function updateCartTotals() {
+            let subtotal = 0;
+
+            document.querySelectorAll(".cart-item").forEach(item => {
+                let price = parseFloat(item.getAttribute("data-price")); // Get price from data attribute
+                let quantity = parseInt(item.querySelector(".quantity-input").value); // Get quantity input value
+                let itemSubtotal = price * quantity; // Calculate item subtotal
+
+                // Update item subtotal in UI
+                item.querySelector(".item-subtotal").textContent = `Rs. ${itemSubtotal.toFixed(2)}`;
+
+                // Update overall cart subtotal
+                subtotal += itemSubtotal;
+            });
+
+            // Update cart totals in UI
+            document.querySelector(".subtotal").textContent = `Rs. ${subtotal.toFixed(2)}`;
+            document.querySelector(".total").textContent = `Rs. ${subtotal.toFixed(2)}`; // Assuming total is same as subtotal
+        }
+
+        // Add event listener to each quantity input
+        quantityInputs.forEach(input => {
+            input.addEventListener("input", function () {
+                updateCartTotals();
+            });
+        });
+
+        updateCartTotals(); // Initialize on page load
+    });
+</script>

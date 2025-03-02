@@ -1,0 +1,74 @@
+﻿ 
+@* @model List<Category> *@
+@* <section id="services" class="services section"> *@
+
+@*     <!-- Section Title --> *@
+@*     <div class="container section-title" data-aos="fade-up"> *@
+@*         <h2>Services</h2> *@
+@*         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> *@
+@*     </div><!-- End Section Title --> *@
+
+@*     <div class="container"> *@
+
+@*         <div class="row gy-4"> *@
+
+@*             @foreach(var item in Model){ *@
+
+@*                 <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="100"> *@
+@*                     <div class="service-item d-flex"> *@
+@*                         <div class="icon flex-shrink-0"><i class="bi @item.photo"></i></div> *@
+@*                         <div> *@
+@*                             <h4 class="title"><a href="/Home/Products/@item.id" class="stretched-link">@item.name</a></h4> *@
+
+@*                             <p class="description">@item.description</p> *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@*             } *@
+       
+@*             <!-- End Service Item --> *@
+
+           
+@*         </div> *@
+
+@*     </div> *@
+
+@* </section> *@
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Category>
+
+@* @model E_commerce.View_Models.IndexVm *@
+<section id="services" class="services section" style="margin-top:120px;">
+
+    <div class="container section-title" data-aos="fade-up" style="margin:50px;">
+        <h2>Categories</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+    </div>
+
+    <div class="container">
+
+        <div class="row gy-4">
+
+            @foreach (var item in Model)
+            {
+
+                <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-item d-flex" style="background-color:inherit;">
+                        <div class="icon flex-shrink-0"><i class="bi @item.photo" style="background-color:antiquewhite;font-size:30px; padding:20px 25px;margin:10px; color:#B88E2F;"></i></div>
+                        <div>
+                            <h4 class="title"><a class="mariam" href="/Home/Products/@item.id" class="stretched-link" style="color:#B88E2F;">@item.name</a></h4>
+                            <p class="description" style="margin: 0">@item.description</p>
+                        </div>
+                    </div>
+
+                    @* <partial name="_productPartial" model="@item" /> *@
+                </div>
+            }
+        </div>
+
+    </div>
+
+</section>
+<script></script>

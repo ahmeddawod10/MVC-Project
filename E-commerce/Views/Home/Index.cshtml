@@ -1,0 +1,228 @@
+﻿@* using E_commerce.View_Models;  *@
+@model E_commerce.View_Models.IndexVm
+
+<section id="hero" class="hero">
+    <div class="hero-image">
+        <!-- This would be your actual image -->
+        <img src="~/assets/img/home.jpg" alt="Modern furniture with rattan chair and plant">
+    </div>
+    <div class="hero-content">
+        <span class="subtitle">New Arrival</span>
+        <h1>Discover Our<br>New Collection</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.</p>
+        <a href="#" class="btn-primary">BUY NOW</a>
+    </div>
+</section><!-- /Hero Section -->
+<!------------------------Search------------------------------->
+<div class="container mt-5 mb-5">
+    <form asp-action="ProductSearch" asp-controller="Home" method="get">
+        <div class="row g-3 align-items-end">
+            <div class="col-sm-10">
+                <input type="text" name="xname" id="xname" class="form-control" placeholder="Search" />
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-------------------------filter------------------------------->
+<section id="portfolio" class="portfolio section categories-section">
+
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Our Categories</h2>
+        <p>We Have A Wide Range Of Categories To Meet All Your Needs. </p>
+    </div>
+
+    <div class="container">
+
+        <div class="isotope-layout filter-container" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+
+            <ul class="portfolio-filters isotope-filters category-filters" data-aos="fade-up" data-aos-delay="100">
+                <li data-filter="*" class="filter filter-active">All</li>
+
+                @foreach (var item in Model.Categories)
+                {
+                    <li data-filter="._@item.id">@item.name</li>
+
+                }
+
+            </ul>
+
+
+            <div class="row gy-4 isotope-container products-grid" data-aos="fade-up" data-aos-delay="200">
+
+                @foreach (var item in Model.Products)
+                {
+                    <partial name="_productPartial" model="@item" />
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- /Portfolio Section -->
+<!--------------------------------------------------------------->
+
+
+<section id="testimonials" class="testimonials section light-background">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Reviews</h2>
+        <p>That's some of our customers reviews</p>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper" data-speed="600" data-delay="5000" data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
+            <script type="application/json" class="swiper-config">
+                {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                "delay": 5000
+                },
+                "slidesPerView": "auto",
+                "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+                },
+                "breakpoints": {
+                "320": {
+                "slidesPerView": 1,
+                "spaceBetween": 40
+                },
+                "1200": {
+                "slidesPerView": 3,
+                "spaceBetween": 20
+                }
+                }
+                }
+            </script>
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.Reviews)
+                {
+                    <div class="swiper-slide">
+                        <div class="testimonial-item" "=" ">
+                        <p>
+                        <i class=" bi bi-quote quote-icon-left"></i>
+                        <span>@item.description</span>
+                        <i class="bi bi-quote quote-icon-right"></i>
+                        </p>
+                        <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                            <h3>@item.name</h3>
+                            <h4>@item.subject</h4>
+                        </div>
+                    </div><!-- End testimonial item -->
+                }
+
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+
+</section><!-- /Testimonials Section -->
+
+
+
+<!-- Contact Section -->
+<section id="contact" class="contact section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Contact Us</h2>
+        <p>We are happy to hear from you, and we will work on resolving your complaint as soon as possible </p>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-6">
+
+                <div class="row gy-4">
+                    <div class="col-md-6">
+                        <div class="info-item" data-aos="fade" data-aos-delay="200">
+                            <i class="bi bi-geo-alt"></i>
+                            <h3>Address</h3>
+                            <p>A108 Adam Street</p>
+                            <p>New York, NY 535022</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                    <div class="col-md-6">
+                        <div class="info-item" data-aos="fade" data-aos-delay="300">
+                            <a href="https://api.whatsapp.com/send?phone=+1 5589 55488 55" target="_blank">
+                            <i class="bi bi-telephone"></i>
+                            </a>
+                            <h3>Call Us</h3>
+                            <p>+1 5589 55488 55</p>
+                            <p>+1 6678 254445 41</p>
+                        </div>
+                    </div><!-- End Info Item -->
+                    
+                    <div class="col-md-6">
+                        <div class="info-item" data-aos="fade" data-aos-delay="400">
+                            <a href="mailto:info@example.com" target="_blank">
+                            <i class="bi bi-envelope"></i>
+                            </a >
+                            <h3>Email Us</h3>
+                            <p>info@example.com</p>
+                            <p>contact@example.com</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                    <div class="col-md-6">
+                        <div class="info-item" data-aos="fade" data-aos-delay="500">
+                            <i class="bi bi-clock"></i>
+                            <h3>Open Hours</h3>
+                            <p>Monday - Friday</p>
+                            <p>9:00AM - 05:00PM</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+                <form asp-action= "sendReview" asp-controller="Home" method="post" class="myform" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row gy-4">
+
+                        <div class="col-md-6">
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" required="">
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
+                        </div>
+
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required="">
+                        </div>
+
+                        <div class="col-12">
+                            <textarea class="form-control" name="description" id="description" rows="6" placeholder="Message" required=""></textarea>
+                        </div>
+
+                        <div class="col-12 text-center">
+
+                            <input type="submit" class="btn btn-primary" value="Send" onclick="alert('The message has been sent successfully')" />
+
+                        </div>
+                    </div>
+                </form>
+            </div><!-- End Contact Form -->
+
+        </div>
+
+    </div>
+
+</section><!-- /Contact Section -->

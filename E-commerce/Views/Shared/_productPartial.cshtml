@@ -1,0 +1,69 @@
+﻿@* @model Product
+<div class="col-lg-4 col-md-6 portfolio-item isotope-item _@Model.cat.id">
+    <div class="portfolio-content h-100">
+        <a href="@Model.photo" data-gallery="portfolio-gallery-app" class="glightbox">
+            <img src="@Model.photo" class="img-fluid" alt="" />
+
+        </a>
+        <div class="portfolio-info">
+            <h4><a href="~/home/ProductDetails/@Model.cat.id" title="More Details">@Model.name</a></h4>
+            <p>@Model.description</p>
+            <div>
+                @* <button class="btn btn-success" href="/Home/AddToCart/@Model.id">Add To Cart</button> *@
+    @*             <a asp-controller="Home" asp-action="AddToCart" class="btn btn-primary" asp-route-id="@Model.id">Add to Cart</a> |
+                <a asp-controller="products" asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.id">Edit</a> |
+                <a asp-controller="products" asp-action="Details" class="btn btn-secondary" asp-route-id="@Model.id">Details</a> |
+                <a asp-controller="products" asp-action="Delete" class="btn btn-danger" asp-route-id="@Model.id">Delete</a>
+
+            </div>
+        </div>
+    </div>
+</div> *@
+ @model Product
+<!--
+<div class="col-lg-4 col-md-6 portfolio-item isotope-item product-card _@Model.cat.id">
+    <div class="portfolio-content h-100 product-image">
+        <a href="@Model.photo" data-gallery="portfolio-gallery-app" class="glightbox">
+            <img src="@Model.photo" class="img-fluid" alt="" />
+
+        </a>
+        <div class="portfolio-info">
+            <h4><a href="~/home/ProductDetails/@Model.cat.id" title="More Details">@Model.name</a></h4>
+            <p>@Model.description</p>
+            <div>
+                <a asp-controller="products" asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.id">Edit</a> |
+                <a asp-controller="products" asp-action="Details" class="btn btn-secondary" asp-route-id="@Model.id">Details</a> |
+                <a asp-controller="products" asp-action="Delete" class="btn btn-danger" asp-route-id="@Model.id">Delete</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<div class="col-lg-4 col-md-6 portfolio-item isotope-item product-card category _@Model.cat.id">
+    <div class="product-image">
+        <img src="~/assets/img/@Model.photo" class="img-fluid" alt="@Model.name" />
+        <!-- Product Actions -->
+        <div class="product-actions">
+            <a href="/Home/productDetails/@Model.id" data-gallery="portfolio-gallery-app" class="action-button" title="View">
+                <i class="bi bi-eye"></i>
+            </a>
+            <a asp-controller="Home" asp-action="AddToCart" class="action-button" asp-route-id="@Model.id"><i class="bi bi-cart"></i></a> |
+             
+        </div>
+    </div>
+
+    <div class="product-details">
+        <h3 class="product-name">
+            <a href="~/home/ProductDetails/@Model.cat.id">@Model.name</a>
+        </h3>
+        <div class="product-category">@Model.cat.name</div>
+        <div class="product-description">@Model.description</div>
+        <div class="product-price">Rp @Model.price.ToString("N0")</div>
+
+        @* <a asp-controller="products" asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.id">Edit</a> | *@
+        @* <a asp-controller="products" asp-action="Details" class="btn btn-secondary" asp-route-id="@Model.id">Details</a> | *@
+        @* <a asp-controller="products" asp-action="Delete" class="btn btn-danger" asp-route-id="@Model.id">Delete</a> *@
+
+    </div>
+</div>

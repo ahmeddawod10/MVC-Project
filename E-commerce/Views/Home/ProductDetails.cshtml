@@ -1,0 +1,121 @@
+﻿@model E_commerce.Models.Product
+ 
+
+
+
+<section class="product-details">
+    <div class="container">
+        <div class="product-layout">
+            <!-- Product Images -->
+            <div class="product-images">
+                <div class="thumbnail-gallery">
+                    <button class="thumbnail active">
+                        <img src="~/assets/img/@Model.photo" alt="Asgaard sofa view 1">
+                    </button>
+                    <button class="thumbnail">
+                        <img src="~/assets/img/@Model.photo1" alt="Asgaard sofa view 2">
+                    </button>
+                    <button class="thumbnail">
+                        <img src="~/assets/img/@Model.photo2" alt="Asgaard sofa view 3">
+                    </button>
+                </div>
+
+                <div class="main-image">
+                    <img id="mainImage" src="~/assets/img/@Model.photo" alt="Asgaard sofa">
+                </div>
+
+                <script>
+                    // Select all thumbnails
+                    const thumbnails = document.querySelectorAll(".thumbnail img");
+                    const mainImage = document.getElementById("mainImage");
+
+                    // Add event listener to each thumbnail
+                    thumbnails.forEach(thumbnail => {
+                        thumbnail.addEventListener("click", function() {
+                            // Update the main image source
+                            mainImage.src = this.src;
+
+                            // Remove active class from all thumbnails
+                            document.querySelectorAll(".thumbnail").forEach(btn => btn.classList.remove("active"));
+
+                            // Add active class to the clicked thumbnail's parent button
+                            this.parentElement.classList.add("active");
+                        });
+                    });
+                </script>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <h1 class="product-title">Asgaard sofa</h1>
+                <div class="product-price">Rs. 250,000.00</div>
+
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <span class="review-count">(5 Customer Reviews)</span>
+                </div>
+
+                <p class="product-description">
+                    Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio system bringing the best of the low, mid and high frequencies to the table.
+                </p>
+
+                <div class="product-options">
+                    <div class="color-options">
+                        <span class="option-label">Color</span>
+                        <div class="color-buttons">
+                            <button class="color-btn blue" data-color="blue"></button>
+                            <button class="color-btn black active" data-color="black"></button>
+                            <button class="color-btn gold" data-color="gold"></button>
+                        </div>
+                    </div>
+
+                    <div class="size-options">
+                        <span class="option-label">Size</span>
+                        <div class="size-buttons">
+                            <button class="size-btn">XL</button>
+                            <button class="size-btn active">L</button>
+                            <button class="size-btn">M</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-actions-in-details">
+                    <div class="quantity-selector">
+                        <button class="qty-btn minus">-</button>
+                        <input type="number" value="1" min="1" class="qty-input">
+                        <button class="qty-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-in-details"> <a href="/Home/AddToCart/@Model.id">Add To Cart</button>
+                    @* <button class="btn btn-success"> <a href="/Home/AddToCart/@Model.id">Add To Cart</a> </button> *@
+                </div>
+
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <span class="label">SKU:</span>
+                        <span class="value">SS001</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label">Category:</span>
+                        <a href="#" class="value">Sofas</a>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label">Tags:</span>
+                        <a href="#" class="value">Sofa, Chair, Home, Shop</a>
+                    </div>
+                </div>
+
+                <div class="social-share">
+                    <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

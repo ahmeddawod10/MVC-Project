@@ -1,0 +1,61 @@
+﻿<section id="contact" class="contact-section">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="section-title">
+            <h2>Get In Touch With Us</h2>
+            <p>For More Information About Our Product & Services. Please Feel Free To Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!</p>
+        </div>
+
+        <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="bi bi-geo-alt"></i>
+                    <h3>Address</h3>
+                    <p>236 5th SE Avenue, New<br>York NY10000, United States</p>
+                </div>
+
+                <div class="info-item">
+                    <i class="bi bi-telephone">
+                        <a href="https://api.whatsapp.com/send?phone=+1 5589 55488 55" target="_blank">
+                    </i>
+                    <h3>Phone</h3>
+                    <p>Mobile: +(84) 546-6789<br>Hotline: +(84) 456-6789</p>
+                </div>
+
+                <div class="info-item">
+                    <i class="bi bi-clock"></i>
+                    <h3>Working Time</h3>
+                    <p>Monday-Friday: 9:00 - 22:00<br>Saturday-Sunday: 9:00 - 21:00</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <form asp-action="sendReview" asp-controller="Home" method="post">
+                    <div class="form-group">
+                        <label for="name">Your name</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Abc" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Abc@def.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" name="subject" id="subject" class="form-control" placeholder="This is an optional" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Message</label>
+                        <textarea name="description" id="description" class="form-control" rows="5" placeholder="Hi! I'd like to ask about" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
